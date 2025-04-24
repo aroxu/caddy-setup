@@ -30,17 +30,17 @@ echo "Adding caddy user..."
 useradd caddy
 if [[ ! -e "/home/caddy" ]]; then
     mkdir -p /home/caddy
-    chown caddy:users /home/caddy
+    chown caddy:caddy /home/caddy
     chmod 755 /home/caddy
 fi
 if [[ ! -e "/etc/caddy" ]]; then
     mkdir -p /etc/caddy
-    chown caddy:users /etc/caddy
+    chown caddy:caddy /etc/caddy
 fi
 wget "https://raw.githubusercontent.com/aroxu/caddy-setup/refs/heads/main/static/Caddyfile" -O "/etc/caddy/Caddyfile"
 if [[ ! -e "/var/www/html" ]]; then
     mkdir -p /var/www/html
-    chown caddy:users /var/www/html
+    chown caddy:caddy /var/www/html
 fi
 
 echo 'Caddy installed successfully!'
