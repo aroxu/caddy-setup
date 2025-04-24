@@ -1,0 +1,36 @@
+(cloudflare) {
+  tls {
+    # Make sure to reaplce the 'GENERATE_CLOUDFLARE_API_KEY' to your Cloudflare API key
+    # It should have permissions to edit DNS records and read the zone
+    # Go to https://dash.cloudflare.com/profile/api-tokens and create a new token with the permissions above.
+    dns cloudflare GENERATE_CLOUDFLARE_API_KEY
+  }
+}
+
+# Static Server
+# create a static file server for the static files in the static directory
+# and serve them on the domain static.aroxu.me
+static.aroxu.me {
+  root * /var/www/html
+  # If you want to make it browsable, replace file_server with 'file_server browse'
+  file_server {
+    hide .private
+  }
+  import cloudflare
+}
+
+# Portainer
+portainer.aroxu.me {
+  reverse_proxy http://10.24.10.99:8001
+  import cloudflare
+}
+
+# Proxmox
+proxmox.aroxu.me {
+  reverse_proxy https://10.24.89.242:8006 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+  import cloudflare
+}
