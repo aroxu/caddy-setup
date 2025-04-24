@@ -28,14 +28,20 @@ echo "Setting up systemd service for Caddy"
 systemctl daemon-reload
 echo "Adding caddy user..."
 useradd caddy
-mkdir -p /home/caddy
-mkdir -p /etc/caddy
+if [[ ! -e "/home/caddy" ]]; then
+    mkdir -p /home/caddy
+    chown caddy:users /home/caddy
+    chmod 755 /home/caddy
+fi
+if [[ ! -e "/etc/caddy" ]]; then
+    mkdir -p /etc/caddy
+    chown caddy:users /etc/caddy
+fi
 wget "https://raw.githubusercontent.com/aroxu/caddy-setup/refs/heads/main/static/Caddyfile" -O "/etc/caddy/Caddyfile"
-mkdir -p /var/www/html
-
-chown -R caddy:users /home/caddy
-chown -R caddy:users /etc/caddy
-chown -R caddy:users /var/www/html
+if [[ ! -e "/var/www/html" ]]; then
+    mkdir -p /var/www/html
+    chown caddy:users /var/www/html
+fi
 
 echo 'Caddy installed successfully!'
 echo 'You can now edit `/etc/caddy/Caddyfile`'
