@@ -28,7 +28,7 @@ echo "Setting up systemd service for Caddy"
 systemctl daemon-reload
 echo "Adding caddy user..."
 useradd caddy
-mkdir /home/caddy
+mkdir -p /home/caddy
 mkdir -p /etc/caddy
 wget "https://raw.githubusercontent.com/aroxu/caddy-setup/refs/heads/main/static/Caddyfile" -O "/etc/caddy/Caddyfile"
 mkdir -p /var/www/html
