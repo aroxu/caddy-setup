@@ -37,8 +37,8 @@ chown -R caddy:users /home/caddy
 chown -R caddy:users /etc/caddy
 chown -R caddy:users /var/www/html
 
-echo "Caddy installed successfully!"
-echo "You can now edit `/etc/caddy/Caddyfile`"
-echo "Then run `systemctl start caddy` to start the service"
-echo "You can also run `systemctl enable caddy` to start the service on boot"
-echo "If you want to start and enable the service, run `systemctl enable caddy --now`"
+echo 'Caddy installed successfully!'
+echo 'You can now edit `/etc/caddy/Caddyfile`'
+echo 'Then run `systemctl start caddy` to start the service'
+echo 'You can also run `systemctl enable caddy` to start the service on boot'
+echo 'If you want to start and enable the service, run `systemctl enable caddy --now`'
